@@ -11,12 +11,13 @@ package com.mycompany.personasarreglos;
 public class PersonasArreglos {
     public static void main(String[] args) {
         // Arreglos con nombres de ejemplo
-        String[] nombres = {"Jhare", "Evany", "Liz"};
-        String[] apellidos = {"Torres", "Gómez", "Rojas"};
-        int[] edades = {20, 22, 19};
+        String[] nombres = {"Jhare", "Evany", "Liz","Soso"};
+        String[] apellidos = {"Torres", "Gómez", "Rojas","Ewei"};
+        int[] edades = {20, 22, 19,21};
 
         // Mostrar los datos en pantalla
         System.out.println("Listado de personas:");
+        // lector para que siga los arreglos
         for (int i = 0; i < nombres.length; i++) {
             System.out.println((i+1) + ". " + nombres[i] + " " + apellidos[i] + " - Edad: " + edades[i]); 
                     }
