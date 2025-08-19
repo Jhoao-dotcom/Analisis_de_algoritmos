@@ -9,7 +9,7 @@ package com.mycompany.personasarreglos;
  * @author JHARE
  */
 public class PersonasArreglos {
-    public static void master(String[] args) {
+    public static void main(String[] args) {
         // Arreglos con nombres de ejemplo
         String[] nombres = {"Jhare", "Evany", "Liz"};
         String[] apellidos = {"Torres", "Gómez", "Rojas"};
