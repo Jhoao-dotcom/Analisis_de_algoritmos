@@ -9,22 +9,23 @@ import java.util.Scanner;
  * @author JHARE
  */
 public class Complejidad_algoritmica {
-
+// creo clase main con la iniciacion del arreglo
     public static void main(String[] args) {
         int[] numeros = {3, 7, 10, 15, 20};
-
+ // directamente para manejar error
         try (Scanner scar = new Scanner(System.in)) {
             System.out.print("Ingrese el número que desea buscar: ");
             int buscar = scar.nextInt();
+            // si, sino
             if (Recorrelemento(numeros, buscar)) {
-                System.out.println(" El número " + buscar + " SÍ está en el arreglo.");
+                System.out.println(" El número " + buscar + " sí está en el arreglo.");
             } else {
-                System.out.println(" El número " + buscar + " NO está en el arreglo.");
+                System.out.println(" El número " + buscar + " no está en el arreglo.");
             }
             // lo de aqui abajo lo borre, no se como
         }
     }    
-
+//metodo para buscar lo dato
     public static boolean Recorrelemento (int[] lista, int elemento) {
         for (int i : lista) {
             if (i == elemento) {
