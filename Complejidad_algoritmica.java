@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Complejidad_algoritmica {
 // creo clase main con la iniciacion del arreglo
     public static void main(String[] args) {
-        int[] numeros = {3, 7, 10, 15, 20};
+        int[] numeros = {3, 7, 10, 15, 20, 7, 45, 11, 58, 34, 74, 47, 12, 21};
  // directamente para manejar error
         try (Scanner scar = new Scanner(System.in)) {
             System.out.print("Ingrese el número que desea buscar: ");
