@@ -14,9 +14,9 @@ public class BurbujaEjemplo {
     public static void burbuja(int[] arr) {
         int n = arr.length;
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
+        for (int i = 0; i < n - 1; i++) { //pasadas para revisar i empieza en 0 y el numero de pasadas en n-1
+            for (int j = 0; j < n - i - 1; j++) { // recorre la segunda parte 
+                if (arr[j] > arr[j + 1]) { //compara dos datos juntos
                     // Intercambiar arr[j] y arr[j+1]
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
@@ -26,7 +26,7 @@ public class BurbujaEjemplo {
         }
     }
 
-    // Método para imprimir el arreglo
+    // Método constructor para imprimir el arreglo
     public static void imprimirArreglo(int[] arr) {
         for (int num : arr) {
             System.out.print(num + " ");
