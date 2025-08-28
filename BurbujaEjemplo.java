@@ -26,7 +26,7 @@ public class BurbujaEjemplo {
         }
     }
 
-    // Método constructor para imprimir el arreglo
+    // Método para imprimir el arreglo
     public static void imprimirArreglo(int[] arr) {
         for (int num : arr) {
             System.out.print(num + " ");
