@@ -22,7 +22,6 @@ public class Complejidad_algoritmica {
             } else {
                 System.out.println(" El número " + buscar + " no está en el arreglo.");
             }
-            // lo de aqui abajo lo borre, no se como
         }
     }    
 //metodo para buscar lo dato
