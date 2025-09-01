@@ -18,7 +18,7 @@ import java.util.ArrayList;
      */
 
 public class EstudiantesFrame extends JFrame {
-
+//el jframe es para ejecutar la ventana 
     private final  JTable table;
     private final DefaultTableModel model;
     private final ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
@@ -125,7 +125,7 @@ public class EstudiantesFrame extends JFrame {
             return;
         }
 
-        // Algoritmo Burbuja (O(n²))
+        // Algoritmo Burbuja para ordenacionn (O(n²))
         int n = listaEstudiantes.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -146,9 +146,10 @@ public class EstudiantesFrame extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Estudiantes ordenados por apellido");
     }
-
+//para que el frame pueda mostrarse "true"
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EstudiantesFrame().setVisible(true));
     }
 }
         
+
