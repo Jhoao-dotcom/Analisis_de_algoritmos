@@ -144,7 +144,7 @@ public class EstudiantesFrame extends JFrame {
             model.addRow(new Object[]{est.id, est.nombre, est.apellido, est.carrera});
         }
 
-    
+    // los joption son la pantallita quete suelta por presion
         JOptionPane.showMessageDialog(this, "Estudiantes ordenados por apellido");
     }
 //para que el frame pueda mostrarse "true"
@@ -153,5 +153,3 @@ public class EstudiantesFrame extends JFrame {
     }
 }
         
-
-
