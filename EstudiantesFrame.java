@@ -102,7 +102,7 @@ public class EstudiantesFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "hay un error, nose pq " + ex.getMessage());
         }
     }
-
+//sasasa
     private void buscarEstudiante() {
         String nombreBuscado = JOptionPane.showInputDialog(this, "Ingrese el nombre a buscar:");
         if (nombreBuscado == null || nombreBuscado.isEmpty()) return;
@@ -153,3 +153,4 @@ public class EstudiantesFrame extends JFrame {
     }
 }
         
+
