@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
     /**
      */
+//extienda la biblioteca jframe
 
 public class EstudiantesFrame extends JFrame {
 //el jframe es para ejecutar la ventana 
@@ -153,5 +154,6 @@ public class EstudiantesFrame extends JFrame {
     }
 }
         //tegno que agragr las ultimas que hicimos
+
 
 
