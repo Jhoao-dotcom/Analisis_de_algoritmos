@@ -152,5 +152,6 @@ public class EstudiantesFrame extends JFrame {
         SwingUtilities.invokeLater(() -> new EstudiantesFrame().setVisible(true));
     }
 }
-        
+        //tegno que agragr las ultimas que hicimos
+
 
