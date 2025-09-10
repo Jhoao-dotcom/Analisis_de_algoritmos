@@ -16,17 +16,16 @@ import java.util.ArrayList;
 
     /**
      */
-//extienda la biblioteca jframe
-
+// extiende el jframe que es la ventanita
 public class EstudiantesFrame extends JFrame {
-//el jframe es para ejecutar la ventana 
+//inicializa la tabla y contenido
     private final  JTable table;
     private final DefaultTableModel model;
-    private final ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
+    private ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
 
     public EstudiantesFrame() {
         setTitle("Gestión de Estudiantes");
-        setSize(700, 400);
+        setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -38,24 +37,40 @@ public class EstudiantesFrame extends JFrame {
         JButton btnCargar = new JButton("Cargar Estudiantes");
         JButton btnBuscar = new JButton("Buscar Estudiante");
         JButton btnOrdenar = new JButton("Ordenar por Apellido ");
+        JButton btnOrden = new JButton("Ordenar por Nombre");
+        JButton btnMergeSort = new JButton("Ordenar por Nombre (MergeSort)");
+        JButton btnMezclaEquilibrada = new JButton("Mezcla Equilibrada Múltiple");
 
         // Panel de botones
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new GridLayout(1,0,10,10));
         panel.add(btnCargar);
         panel.add(btnBuscar);
         panel.add(btnOrdenar);
+        panel.add(btnOrden);
+        panel.add(btnMergeSort);
+        panel.add(btnMezclaEquilibrada);
 
+        
         add(new JScrollPane(table), BorderLayout.CENTER);
         add(panel, BorderLayout.SOUTH);
 
-        // Acción: cargar estudiantes desde SQL
+        // accion para cargar estudiantes desde SQL
         btnCargar.addActionListener(e -> cargarEstudiantes());
 
-        // Acción: búsqueda secuencial (O(n))
+        //accion para búsqueda secuencial (O(n))
         btnBuscar.addActionListener(e -> buscarEstudiante());
 
-        // Acción: ordenar con Burbuja (O(n²))
+        //accion para ordenar con Burbuja (O(n²))
         btnOrdenar.addActionListener(e -> ordenarBurbuja());
+        
+        //accion para ordenar con insercion
+        btnOrden.addActionListener(e -> ordenarInsercion());
+        
+        //accion para el direct merge sort
+        btnMergeSort.addActionListener(e -> ordenarMergeSort());
+        
+        //mezcla equilibrada multiple
+        btnMezclaEquilibrada.addActionListener(e -> ordenarMezclaEquilibrada());
     }
 
     // Clase interna para manejar objetos estudiante
@@ -103,7 +118,7 @@ public class EstudiantesFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "hay un error, nose pq " + ex.getMessage());
         }
     }
-//sasasa
+
     private void buscarEstudiante() {
         String nombreBuscado = JOptionPane.showInputDialog(this, "Ingrese el nombre a buscar:");
         if (nombreBuscado == null || nombreBuscado.isEmpty()) return;
@@ -119,14 +134,14 @@ public class EstudiantesFrame extends JFrame {
         }
         JOptionPane.showMessageDialog(this, "No se encontró el estudiante.");
     }
-
+    
     private void ordenarBurbuja() {
         if (listaEstudiantes.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Primero carga los estudiantes.");
             return;
         }
 
-        // Algoritmo Burbuja para ordenacionn (O(n²))
+        // Algoritmo Burbuja (O(n²))
         int n = listaEstudiantes.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -138,22 +153,168 @@ public class EstudiantesFrame extends JFrame {
                 }
             }
         }
-
         // Refrescar JTable
         model.setRowCount(0);
         for (Estudiante est : listaEstudiantes) {
             model.addRow(new Object[]{est.id, est.nombre, est.apellido, est.carrera});
         }
 
-    // los joption son la pantallita quete suelta por presion
         JOptionPane.showMessageDialog(this, "Estudiantes ordenados por apellido");
     }
-//para que el frame pueda mostrarse "true"
+    
+    private void ordenarInsercion() {
+    if (listaEstudiantes.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Primero carga los estudiantes.");
+        return;
+    }
+
+    // Algoritmo Inserción (O(n²)), ordena por nombre
+    for (int i = 1; i < listaEstudiantes.size(); i++) {
+        Estudiante actual = listaEstudiantes.get(i);
+        int j = i - 1;
+
+        // Comparar por nombre
+        while (j >= 0 && listaEstudiantes.get(j).nombre.compareToIgnoreCase(actual.nombre) > 0) {
+            listaEstudiantes.set(j + 1, listaEstudiantes.get(j));
+            j--;
+        }
+        listaEstudiantes.set(j + 1, actual);
+    }
+    
+        // Refrescar JTable
+    model.setRowCount(0);
+    for (Estudiante est : listaEstudiantes) {
+        model.addRow(new Object[]{est.id, est.nombre, est.apellido, est.carrera});
+    }
+
+    JOptionPane.showMessageDialog(this, "Estudiantes ordenados por nombre (Inserción).");
+}
+    //direct merge sort contrstuctor para ordenacion externa solo invoca
+    private void ordenarMergeSort() {
+        //mensaje por si no carga los datos
+    if (listaEstudiantes.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Primero carga los estudiantes.");
+        return;
+    }
+
+    listaEstudiantes = mergeSort(listaEstudiantes); // aplica merge sort
+
+    // Refrescar JTable y mensaje de confirmacion 
+    model.setRowCount(0);
+    for (Estudiante est : listaEstudiantes) {
+        model.addRow(new Object[]{est.id, est.nombre, est.apellido, est.carrera});
+    }
+
+    JOptionPane.showMessageDialog(this, "Estudiantes ordenados por nombre (Merge Sort).");
+}
+    
+    //realizacion del merge sort
+    private ArrayList<Estudiante> mergeSort(ArrayList<Estudiante> lista) {
+    if (lista.size() <= 1) {
+        return lista; // caso base
+    }
+
+    int mid = lista.size() / 2;
+    ArrayList<Estudiante> izquierda = new ArrayList<>(lista.subList(0, mid));
+    ArrayList<Estudiante> derecha = new ArrayList<>(lista.subList(mid, lista.size()));
+
+    izquierda = mergeSort(izquierda);
+    derecha = mergeSort(derecha);
+
+    return merge(izquierda, derecha);
+}
+
+private ArrayList<Estudiante> merge(ArrayList<Estudiante> izquierda, ArrayList<Estudiante> derecha) {
+    ArrayList<Estudiante> resultado = new ArrayList<>();
+    int i = 0, j = 0;
+
+    // Combinar en orden por nombre
+    while (i < izquierda.size() && j < derecha.size()) {
+        if (izquierda.get(i).nombre.compareToIgnoreCase(derecha.get(j).nombre) <= 0) {
+            resultado.add(izquierda.get(i));
+            i++;
+        } else {
+            resultado.add(derecha.get(j));
+            j++;
+        }
+    }
+
+    // Agregar lo que quede
+    while (i < izquierda.size()) {
+        resultado.add(izquierda.get(i));
+        i++;
+    }
+    while (j < derecha.size()) {
+        resultado.add(derecha.get(j));
+        j++;
+    }
+
+    return resultado;
+}
+
+    private void ordenarMezclaEquilibrada() {
+    if (listaEstudiantes.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Primero carga los estudiantes.");
+        return;
+    }
+
+    // Crear runs iniciales (de 1 en 1 en este caso)
+    ArrayList<ArrayList<Estudiante>> runs = new ArrayList<>();
+    for (Estudiante est : listaEstudiantes) {
+        ArrayList<Estudiante> run = new ArrayList<>();
+        run.add(est);
+        runs.add(run);
+    }
+
+    // Mezcla equilibrada: fusionar runs hasta que quede 1
+    while (runs.size() > 1) {
+        ArrayList<ArrayList<Estudiante>> newRuns = new ArrayList<>();
+
+        for (int i = 0; i < runs.size(); i += 2) {
+            if (i + 1 < runs.size()) {
+                newRuns.add(mergeRuns(runs.get(i), runs.get(i + 1)));
+            } else {
+                newRuns.add(runs.get(i)); // run sobrante
+            }
+        }
+        runs = newRuns;
+    }
+
+    // Guardar el resultado ordenado
+    listaEstudiantes.clear();
+    listaEstudiantes.addAll(runs.get(0));
+
+    // Refrescar JTable
+    model.setRowCount(0);
+    for (Estudiante est : listaEstudiantes) {
+        model.addRow(new Object[]{est.id, est.nombre, est.apellido, est.carrera});
+    }
+
+    JOptionPane.showMessageDialog(this, "Estudiantes ordenados por Mezcla Equilibrada Múltiple (por nombre)");
+}
+
+// Método auxiliar para fusionar dos runs
+private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Estudiante> run2) {
+    ArrayList<Estudiante> merged = new ArrayList<>();
+    int i = 0, j = 0;
+
+    while (i < run1.size() && j < run2.size()) {
+        if (run1.get(i).nombre.compareToIgnoreCase(run2.get(j).nombre) <= 0) {
+            merged.add(run1.get(i++));
+        } else {
+            merged.add(run2.get(j++));
+        }
+    }
+
+    while (i < run1.size()) merged.add(run1.get(i++));
+    while (j < run2.size()) merged.add(run2.get(j++));
+
+    return merged;
+}
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EstudiantesFrame().setVisible(true));
     }
 }
-        //tegno que agragr las ultimas que hicimos
-
+        
 
 
