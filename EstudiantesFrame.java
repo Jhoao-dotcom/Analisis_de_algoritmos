@@ -53,7 +53,7 @@ public class EstudiantesFrame extends JFrame {
         
         add(new JScrollPane(table), BorderLayout.CENTER);
         add(panel, BorderLayout.SOUTH);
-
+//tenemos los algortismo que utilice pa esta vez
         // accion para cargar estudiantes desde SQL
         btnCargar.addActionListener(e -> cargarEstudiantes());
 
@@ -316,5 +316,6 @@ private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Es
     }
 }
         
+
 
 
