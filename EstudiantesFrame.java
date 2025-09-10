@@ -57,16 +57,16 @@ public class EstudiantesFrame extends JFrame {
         // accion para cargar estudiantes desde SQL
         btnCargar.addActionListener(e -> cargarEstudiantes());
 
-        //accion para búsqueda secuencial (O(n))
+        //accion para búsqueda secuencial (O(n)) primer noombre
         btnBuscar.addActionListener(e -> buscarEstudiante());
 
-        //accion para ordenar con Burbuja (O(n²))
+        //accion para ordenar con Burbuja (O(n²)) primer apellido
         btnOrdenar.addActionListener(e -> ordenarBurbuja());
         
-        //accion para ordenar con insercion
+        //accion para ordenar con insercion, segundo nombre
         btnOrden.addActionListener(e -> ordenarInsercion());
         
-        //accion para el direct merge sort
+        //accion para el direct merge sort, nombre sort
         btnMergeSort.addActionListener(e -> ordenarMergeSort());
         
         //mezcla equilibrada multiple
@@ -316,6 +316,7 @@ private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Es
     }
 }
         
+
 
 
 
