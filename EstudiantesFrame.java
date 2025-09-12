@@ -315,7 +315,8 @@ private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Es
         SwingUtilities.invokeLater(() -> new EstudiantesFrame().setVisible(true));
     }
 }
-        
+        //acomodar en clases java para una meor organizacion
+
 
 
 
