@@ -113,6 +113,7 @@ public class EstudiantesFrame extends JFrame {
                 model.addRow(new Object[]{est.id, est.nombre, est.apellido, est.carrera});
             }
 
+            
             JOptionPane.showMessageDialog(this, "Estudiantes en listaaa");
 
         } catch (Exception ex) {
@@ -318,6 +319,7 @@ private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Es
 }
         //acomodar en clases java para una meor organizacion
 //netbeans  b
+
 
 
 
