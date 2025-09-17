@@ -13,8 +13,6 @@ import java.util.ArrayList;
  *
  * @author JHARE
  */
-
-
     /**
      */
 // extiende el jframe que es la ventanita
@@ -318,6 +316,7 @@ private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Es
 }
         //acomodar en clases java para una meor organizacion
 //netbeans  b
+
 
 
 
