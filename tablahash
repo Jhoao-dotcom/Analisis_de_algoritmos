@@ -76,7 +76,6 @@ class HashTable<K, V> {
     }
 }
 
-
 ¿Qué es un HashMap?
 
 En Java, HashMap es una estructura de datos que implementa la interfaz Map.
@@ -95,15 +94,12 @@ Se encuentra en el paquete java.util.
 Función hash
 
 Cuando insertas una clave, se calcula su hashCode().
-
 Ese hash se transforma en un índice dentro de un arreglo interno (bucket array).
-
 Buckets (cubetas)
 
 Cada posición del arreglo es un bucket que puede contener:
 
 Ningún elemento (vacío).
-
 Uno o más elementos (si hay colisiones).
 
 Colisiones
