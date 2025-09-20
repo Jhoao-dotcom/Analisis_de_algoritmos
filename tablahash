@@ -1,0 +1,119 @@
+1. Elementos básicos de una tabla hash
+
+Arreglo (bucket array): donde se almacenan los elementos.
+Función hash: transforma la clave en un índice. Ejemplo:
+        indice = h(clave) mod tamañoTabla
+
+Resolución de colisiones: porque dos claves distintas pueden dar el mismo índice.
+  Encadenamiento y direcciones abiertas 
+Operaciones principales:
+
+Insertar(clave, valor): calcula índice con la función hash y resuelve colisiones.
+
+Buscar(clave): aplica la misma función hash y busca en el bucket o con direccionamiento.
+
+Eliminar(clave): depende de la técnica:
+
+En encadenamiento: quitas el nodo de la lista.
+En direccionamiento abierto: marcas la celda como “borrada”.
+CODIGO PARA LA TABLA HASH
+import java.util.LinkedList;
+
+class HashTable<K, V> {
+    private class Entry {
+        K key;
+        V value;
+
+        Entry(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    private LinkedList<Entry>[] table;
+    private int size;
+
+    public HashTable(int size) {
+        this.size = size;
+        table = new LinkedList[size];
+        for (int i = 0; i < size; i++) {
+            table[i] = new LinkedList<>();
+        }
+    }
+
+    // Función hash
+    private int hash(K key) {
+        return Math.abs(key.hashCode() % size);
+    }
+
+    // Insertar clave-valor
+    public void insert(K key, V value) {
+        int index = hash(key);
+        for (Entry entry : table[index]) {
+            if (entry.key.equals(key)) { 
+                entry.value = value; // actualizar si existe
+                return;
+            }
+        }
+        table[index].add(new Entry(key, value));
+    }
+
+    // Buscar valor por clave
+    public V search(K key) {
+        int index = hash(key);
+        for (Entry entry : table[index]) {
+            if (entry.key.equals(key)) {
+                return entry.value;
+            }
+        }
+        return null; // no encontrado
+    }
+
+    // Eliminar clave
+    public void delete(K key) {
+        int index = hash(key);
+        table[index].removeIf(entry -> entry.key.equals(key));
+    }
+}
+
+
+¿Qué es un HashMap?
+
+En Java, HashMap es una estructura de datos que implementa la interfaz Map.
+Sirve para almacenar pares clave–valor, donde:
+
+Cada clave es única (no puede repetirse).
+
+Cada valor puede repetirse (distintas claves pueden tener el mismo valor).
+
+Permite insertar, buscar y eliminar en tiempo promedio O(1) gracias al uso de tablas hash.
+
+Se encuentra en el paquete java.util.
+
+  ¿Cómo funciona internamente?
+
+Función hash
+
+Cuando insertas una clave, se calcula su hashCode().
+
+Ese hash se transforma en un índice dentro de un arreglo interno (bucket array).
+
+Buckets (cubetas)
+
+Cada posición del arreglo es un bucket que puede contener:
+
+Ningún elemento (vacío).
+
+Uno o más elementos (si hay colisiones).
+
+Colisiones
+
+Si dos claves distintas producen el mismo índice, se guardan en el mismo bucket.
+
+En versiones modernas de Java, al principio se usa una lista enlazada, pero si un bucket tiene demasiados elementos, se convierte en un árbol rojo–negro (mejora eficiencia de O(n) a O(log n)).
+
+Carga y rehashing
+
+El HashMap tiene una capacidad inicial (tamaño del arreglo) y un factor de carga (por defecto 0.75).
+
+Cuando la tabla está demasiado llena, se duplica de tamaño y se recalculan los índices (rehashing).
