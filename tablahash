@@ -1,4 +1,4 @@
-1. Elementos básicos de una tabla hash
+ Elementos básicos de una tabla hash
 
 Arreglo (bucket array): donde se almacenan los elementos.
 Función hash: transforma la clave en un índice. Ejemplo:
