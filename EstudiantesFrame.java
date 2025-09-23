@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
     /**
      */
+
 // extiende el jframe que es la ventanita
 public class EstudiantesFrame extends JFrame {
 //inicializa la tabla y contenido
@@ -315,4 +316,5 @@ private ArrayList<Estudiante> mergeRuns(ArrayList<Estudiante> run1, ArrayList<Es
     }
 }
         //acomodar en clases java para una meor organizacio
+
 
