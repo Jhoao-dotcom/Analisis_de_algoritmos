@@ -1,0 +1,43 @@
+public class AuthSystem {
+    private Map<String, String> usuarios = new HashMap<>(); // usuario → hashContraseña
+    private Map<String, String> tokens = new HashMap<>();   // token → usuario
+
+    // Registrar usuario
+    public void registrar(String usuario, String contrasena) {
+        usuarios.put(usuario, hash(contrasena));
+    }
+
+    // Login
+    public String login(String usuario, String contrasena) {
+        String hashIngresada = hash(contrasena);
+        if (usuarios.containsKey(usuario) && usuarios.get(usuario).equals(hashIngresada)) {
+            String token = UUID.randomUUID().toString();
+            tokens.put(token, usuario);
+            return token;
+        }
+        return null;
+    }
+
+    // Validar token
+    public boolean validarToken(String token) {
+        return tokens.containsKey(token);
+    }
+
+    // Logout
+    public void logout(String token) {
+        tokens.remove(token);
+    }
+
+    // Función hash simple (ejemplo SHA-256)
+    private String hash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] digest = md.digest(input.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) sb.append(String.format("%02x", b));
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
