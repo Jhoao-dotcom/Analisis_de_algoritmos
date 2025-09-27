@@ -1,3 +1,6 @@
+BOCETO 
+para simulacion en inicio de sesion
+
 public class AuthSystem {
     private Map<String, String> usuarios = new HashMap<>(); // usuario → hashContraseña
     private Map<String, String> tokens = new HashMap<>();   // token → usuario
