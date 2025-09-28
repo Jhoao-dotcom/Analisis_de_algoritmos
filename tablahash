@@ -8,6 +8,7 @@ Resolución de colisiones: porque dos claves distintas pueden dar el mismo índi
   Encadenamiento y direcciones abiertas 
 Operaciones principales:
 
+
 Insertar(clave, valor): calcula índice con la función hash y resuelve colisiones.
 
 Buscar(clave): aplica la misma función hash y busca en el bucket o con direccionamiento.
