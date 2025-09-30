@@ -10,6 +10,7 @@ import java.util.HashMap;
  */
 public class Hash {
 
+    
     /**
      * @param args the command line arguments
      */
@@ -41,4 +42,5 @@ public class Hash {
         }
     }
 }
+
 
