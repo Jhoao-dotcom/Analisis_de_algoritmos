@@ -93,9 +93,9 @@ public class AuthSimple {
                     System.out.print("Contraseña: ");
                     String p = sc.nextLine();
                     if (registrar(u, p)) {
-                        System.out.println("✅ Usuario registrado.");
+                        System.out.println("Usuario registrado.");
                     } else {
-                        System.out.println("❌ El usuario ya existe.");
+                        System.out.println("El usuario ya existe.");
                     }
                     break;
 
@@ -106,9 +106,9 @@ public class AuthSimple {
                     String pLogin = sc.nextLine();
                     String token = login(uLogin, pLogin);
                     if (token != null) {
-                        System.out.println("✅ Login exitoso. Token: " + token);
+                        System.out.println("Login exitoso. Token: " + token);
                     } else {
-                        System.out.println("❌ Usuario o contraseña incorrectos.");
+                        System.out.println("Usuario o contraseña incorrectos.");
                     }
                     break;
 
@@ -116,9 +116,9 @@ public class AuthSimple {
                     System.out.print("Introduce token: ");
                     String tVal = sc.nextLine();
                     if (validarToken(tVal)) {
-                        System.out.println("✅ Token válido. Usuario: " + tokens.get(tVal));
+                        System.out.println("Token válido. Usuario: " + tokens.get(tVal));
                     } else {
-                        System.out.println("❌ Token inválido.");
+                        System.out.println("Token inválido.");
                     }
                     break;
 
@@ -126,12 +126,12 @@ public class AuthSimple {
                     System.out.print("Introduce token: ");
                     String tOut = sc.nextLine();
                     logout(tOut);
-                    System.out.println("✅ Sesión cerrada (si el token existía).");
+                    System.out.println("Sesión cerrada (si el token existía).");
                     break;
 
                 case "5":
                     activo = false;
-                    System.out.println("👋 Cerrando sistema.");
+                    System.out.println("Cerrando sistema.");
                     break;
 
                 default:
@@ -141,3 +141,4 @@ public class AuthSimple {
         sc.close();
     }
 }
+
