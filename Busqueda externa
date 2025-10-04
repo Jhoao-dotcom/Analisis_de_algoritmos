@@ -1,0 +1,50 @@
+ALGORITMOS DE BUSQEUDA EXTERNA
+
+-Búsqueda secuencial por bloques
+
+Este método recorre los datos por grupos o bloques, en lugar de revisar registro por registro. Es útil cuando se necesita mostrar listas completas o grandes conjuntos de información ordenada.
+Por ejemplo, Amazon o Mercado Libre cargan los productos “por página”, y cada página corresponde a un bloque de resultados.
+Su ventaja es la simplicidad y el ahorro de accesos al disco, pero si el usuario busca algo muy específico, el sistema aún debe revisar varios bloques hasta encontrarlo.
+Ejemplos reales:
+
+Tiendas online (Amazon, Mercado Libre): los productos se muestran por páginas (bloques de resultados).
+
+Redes sociales: cuando haces scroll y ves publicaciones antiguas, la app va cargando bloques de datos conforme avanzas.
+
+Sistemas de archivos: al abrir una carpeta con miles de archivos, el sistema lee bloques del disco.
+
+-Búsqueda secuencial con índices
+
+En las bases de datos grandes, los índices son como “guías rápidas” que indican dónde está cada dato sin tener que recorrer toda la tabla.
+Las aplicaciones modernas, como Instagram, TikTok o Twitter, usan índices internos para ubicar rápidamente usuarios, publicaciones o hashtags.
+Cuando buscas un nombre, el sistema no revisa todos los perfiles: consulta el índice y va directo al bloque donde está la coincidencia.
+Es una técnica muy eficiente, aunque los índices deben actualizarse constantemente cuando los datos cambian o se agregan nuevos registros.
+Ejemplos reales:
+
+Instagram o TikTok: al buscar un usuario, el índice permite ir directo al perfil sin revisar millones de cuentas.
+
+Sistemas de matrícula o notas: las bases de datos usan índices sobre el número de estudiante o DNI.
+
+Google: mantiene índices masivos de páginas web para encontrar resultados en segundos.
+
+-Búsqueda por transformación de claves (Hashing)
+
+El hashing convierte una clave (como un correo, ID o contraseña) en una dirección directa donde está el dato.
+Se usa ampliamente en sistemas de autenticación, caché y bases de datos distribuidas.
+Por ejemplo, Facebook o los bancos digitales aplican funciones hash para identificar usuarios y validar contraseñas sin guardar el texto original.
+Su gran ventaja es la rapidez y seguridad, ya que permite un acceso directo al dato, aunque puede generar colisiones (dos claves que producen el mismo resultado) si no se maneja correctamente.
+Ejemplos reales:
+
+Facebook y Gmail: usan hashing para validar contraseñas sin almacenarlas directamente.
+
+Cachés de servidores (Redis, Memcached): guardan datos usando claves hash para acceder en milisegundos.
+
+Sistemas de login o tokens: el correo o usuario se convierte en un hash que apunta directo a la sesión guardada.
+
+  Cómo se controlan en la práctica
+
+Los DBMS (como MySQL, PostgreSQL u Oracle) combinan estos métodos según el tipo de búsqueda:
+Usan índices y hashing para consultas rápidas y exactas.
+Aplican búsqueda externa para trabajar con grandes volúmenes de información almacenada en disco o nube.
+Implementan bloques y cachés para optimizar la velocidad de lectura.
+Y un optimizador de consultas decide automáticamente cuál método es el más eficiente en cada situación.
