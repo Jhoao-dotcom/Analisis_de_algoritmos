@@ -12,8 +12,7 @@ import java.util.*;
  *
  * @author JHARE
  */
-
-    /**
+    /*
      * @param args the command line arguments
      */
 public class AuthSimple {
@@ -142,5 +141,6 @@ public class AuthSimple {
         sc.close();
     }
 }
+
 
 
