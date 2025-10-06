@@ -1,5 +1,48 @@
 ALGORITMOS DE BUSQEUDA EXTERNA
 
+
+Uso sql
+BÚSQUEDA secuencial (Table Scan o Heap Scan)
+Qué es: SQL Server lee toda la tabla o el heap (almacenamiento sin índice) fila por fila desde disco.
+Cuándo se usa:
+Cuando no hay índices sobre la columna consultada.
+Cuando el predicado (WHERE) no filtra muchas filas (por ejemplo, devuelve casi toda la tabla).
+
+Ejemplo SQL:
+
+SELECT * FROM Ventas WHERE Fecha > '2025-01-01';
+Si no hay índice sobre Fecha, SQL Server hace un table scan (búsqueda externa secuencial)
+
+BÚSQUEDA mediante índice B-Tree (Index Seek o Index Scan)
+
+Qué es: SQL Server usa un índice B+Tree, que es una estructura jerárquica almacenada en disco que permite búsqueda binaria externa eficiente.
+Cuándo se usa:
+Cuando existe un índice adecuado sobre la columna usada en el filtro (WHERE o JOIN).
+
+Ejemplo SQL:
+
+SELECT * FROM Ventas WHERE IdVenta = 12345;
+Si IdVenta es clave primaria o índice, se usa Index Seek (búsqueda externa por árbol B).
+
+BÚSQUEDA por Hash Join / Grace Hash Join (Unión externa por hash)
+
+Qué es: Algoritmo de unión eficiente en disco que usa hash tables temporales.
+Divide los datos en particiones que caben en memoria.
+Usa disco para almacenar los “overflow buckets”.
+
+Cuándo se usa:
+
+En joins grandes sin índices de unión adecuados.
+
+Ejemplo SQL:
+
+SELECT v.*, c.Nombre
+FROM Ventas v
+JOIN Clientes c ON v.IdCliente = c.IdCliente;
+
+
+Si no hay índices sobre IdCliente, se usa Grace Hash Join (búsqueda externa por hash).
+
 -Búsqueda secuencial por bloques
 
 Este método recorre los datos por grupos o bloques, en lugar de revisar registro por registro. Es útil cuando se necesita mostrar listas completas o grandes conjuntos de información ordenada.
