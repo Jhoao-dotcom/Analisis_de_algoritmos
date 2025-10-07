@@ -52,7 +52,9 @@ public class AuthSimple {
     }
 
     // Cerrar sesión (logout)
-
+    public static void logout(String token) {
+        tokens.remove(token);
+    }
 
     // Generar hash SHA-256 de una contraseña
     private static String sha256(String input) {
@@ -139,6 +141,7 @@ public class AuthSimple {
         sc.close();
     }
 }
+
 
 
 
