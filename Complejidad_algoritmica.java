@@ -6,8 +6,6 @@ package com.mycompany.complejidad_algoritmica;
 import java.util.Scanner;
 /**
  *
- 
- 
  * @author JHARE
  */
 public class Complejidad_algoritmica {
