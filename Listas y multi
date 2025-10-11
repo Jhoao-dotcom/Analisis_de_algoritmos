@@ -1,0 +1,142 @@
+LISTAS Y MULTILISTAS EN GESTORES
+SAP es un ERP (Enterprise Resource Planning) que maneja información empresarial en módulos integrados (finanzas, logística, RRHH, producción, etc.).
+
+ Uso de Listas en SAP
+
+En SAP, las listas aparecen en múltiples niveles del sistema:
+
+ a) Listas técnicas internas (a nivel de programación ABAP)
+
+SAP usa tablas internas, que son esencialmente listas en memoria.
+
+Se usan para almacenar temporalmente datos de bases de datos.
+
+Funcionan como listas o arreglos dinámicos.
+
+Tipos:
+
+Standard Table → lista simple (se recorre secuencialmente)
+
+Sorted Table → lista ordenada automáticamente
+
+Hashed Table → similar a un diccionario o tabla hash
+
+Ejemplo en ABAP:
+
+DATA: it_empleados TYPE TABLE OF zempleados.
+SELECT * FROM zempleados INTO TABLE it_empleados.
+LOOP AT it_empleados INTO DATA(wa_empleado).
+  WRITE: / wa_empleado-nombre.
+ENDLOOP.
+
+
+Aquí it_empleados es una lista interna que contiene todos los registros de empleados.
+
+ b) Listas funcionales (en la interfaz SAP)
+
+SAP tiene el concepto de ALV List (ABAP List Viewer), que son listas de datos visuales:
+
+Se usan para mostrar y manipular grandes volúmenes de datos.
+
+Ejemplo: “Lista de materiales (BOM)”, “Lista de órdenes de producción”, “Lista de facturas”.
+
+ c) Multilistas en SAP
+
+Las multilistas se representan mediante estructuras jerárquicas o tablas relacionadas:
+
+Ejemplo clásico: Lista de materiales (BOM – Bill of Materials)
+
+Un producto final (padre) tiene muchos componentes (hijos), y cada componente puede ser a su vez un producto con subcomponentes.
+
+Se usa una multilista jerárquica recursiva:
+
+Material A
+  ├── Material B
+  │     ├── Material D
+  │     └── Material E
+  └── Material C
+
+
+Internamente SAP lo maneja mediante las tablas STPO y STPOZ, que enlazan materiales (como nodos de multilista).
+
+🏛️ 2. Oracle (Oracle Database y Oracle ERP Cloud)
+
+Oracle tiene un ecosistema enorme (base de datos + aplicaciones empresariales + nube), y las listas/multilistas están profundamente integradas en su arquitectura.
+
+ Uso de Listas en Oracle Database
+
+Oracle maneja listas principalmente como:
+
+Colecciones PL/SQL (análogas a listas o arrays)
+
+VARRAY, NESTED TABLE, ASSOCIATIVE ARRAY
+
+Se usan para operaciones en memoria, procesamiento masivo y manipulación temporal.
+
+Ejemplo:
+
+DECLARE
+  TYPE lista_empleados IS TABLE OF VARCHAR2(50);
+  empleados lista_empleados := lista_empleados('Juan', 'Ana', 'Carlos');
+BEGIN
+  FOR i IN 1 .. empleados.COUNT LOOP
+    DBMS_OUTPUT.PUT_LINE(empleados(i));
+  END LOOP;
+END;
+
+ Uso de Multilistas en Oracle ERP Cloud
+
+En el nivel de ERP, Oracle usa multilistas para modelar relaciones complejas entre entidades:
+
+Cliente ↔ Pedido ↔ Producto
+
+Proyecto ↔ Empleados ↔ Recursos
+
+Jerarquías contables (cuentas principales, subcuentas, centros de costo)
+
+Estas relaciones se implementan a través de:
+
+Tablas puente (como SALES_ORDER_LINES, PROJECT_ASSIGNMENTS)
+
+Modelos de datos jerárquicos (árboles de cuentas, estructura organizacional)
+
+Ejemplo conceptual:
+
+CUSTOMERS
+   ↓
+SALES_ORDERS
+   ↓
+ORDER_LINES
+   ↓
+PRODUCTS
+
+
+Cada nivel enlaza múltiples registros del siguiente: una multilista jerárquica.
+
+ 3. Microsoft (Dynamics 365 y SQL Server)
+ En Microsoft Dynamics 365 (ERP/CRM)
+
+Dynamics 365 usa listas y multilistas tanto en la interfaz como en su modelo de datos:
+
+ Listas
+
+Views (Vistas) → listas de registros filtrados (clientes, facturas, casos, etc.)
+
+Queues (colas) → listas de tareas o actividades asignadas a usuarios o equipos.
+
+ Multilistas
+
+Dynamics tiene relaciones 1:N, N:1 y N:N entre entidades:
+
+1:N: un cliente tiene varios pedidos.
+
+N:N: un producto puede pertenecer a varias categorías, y una categoría puede tener varios productos.
+
+Internamente, Dynamics usa tablas intermedias (join tables), equivalentes a multilistas:
+
+ProductCategory
+    ├── ProductCategory_Product (tabla multilista)
+    └── Product
+
+
+Estas multilistas permiten vistas jerárquicas y reportes multidimensionales en Power BI o Dataverse.
