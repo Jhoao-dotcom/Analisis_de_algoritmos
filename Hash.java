@@ -6,6 +6,7 @@ package hash;
 import java.util.HashMap;
 /**
  *
+ 
  * @author JHARE
  */
 public class Hash {
@@ -41,6 +42,7 @@ public class Hash {
         }
     }
 }
+
 
 
 
