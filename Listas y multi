@@ -125,7 +125,6 @@ Views (Vistas) → listas de registros filtrados (clientes, facturas, casos, etc
 Queues (colas) → listas de tareas o actividades asignadas a usuarios o equipos.
 
  Multilistas
-
 Dynamics tiene relaciones 1:N, N:1 y N:N entre entidades:
 
 1:N: un cliente tiene varios pedidos.
