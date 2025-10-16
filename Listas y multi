@@ -7,6 +7,7 @@ En SAP, las listas aparecen en múltiples niveles del sistema:
 
  a) Listas técnicas internas (a nivel de programación ABAP)
 
+
 SAP usa tablas internas, que son esencialmente listas en memoria.
 
 Se usan para almacenar temporalmente datos de bases de datos.
